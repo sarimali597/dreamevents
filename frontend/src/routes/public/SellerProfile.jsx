@@ -177,7 +177,10 @@ export default function SellerProfile() {
     );
   }
 
-  const cover = profile.coverImage || profile.logo || eventImageFromKey(profile._id || profile.slug || profile.businessName);
+  const hasPhoto = Boolean(profile.coverImage || profile.logo);
+  const cover = hasPhoto
+    ? profile.coverImage || profile.logo
+    : null;
   const daysMap = calendar?.days || {};
   const servicesList = services || [];
   const packagesList = packages || [];
@@ -189,15 +192,23 @@ export default function SellerProfile() {
   return (
     <div>
       {/* ── Hero ── */}
-      <div className="relative h-64 overflow-hidden bg-gradient-to-br from-primary-800 to-ink-950 sm:h-80">
-        {cover && <img src={cover} alt="" className="h-full w-full object-cover opacity-70" />}
-        <div className="absolute inset-0 bg-gradient-subtle" />
+      <div className="relative z-0 isolate h-56 overflow-hidden bg-gradient-to-br from-primary-800 to-ink-950 sm:h-72 md:h-80">
+        {cover ? (
+          <img
+            src={cover}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-celebrate opacity-90" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/20 to-transparent" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="-mt-16 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
-            <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl border-4 border-surface-base bg-white shadow-lg dark:border-ink-800">
+            <div className="h-28 w-28 -mt-16 shrink-0 overflow-hidden rounded-2xl border-4 border-surface-base bg-white shadow-lg dark:border-ink-800 sm:-mt-20">
               {profile.logo ? (
                 <img src={profile.logo} alt={profile.businessName} className="h-full w-full object-cover" />
               ) : (
@@ -253,15 +264,16 @@ export default function SellerProfile() {
             )}
             <Button
               size="lg"
-              disabled={!canBook}
+              disabled={isSeller}
               onClick={() => {
                 if (!user) {
                   navigate(`/login?redirect=${encodeURIComponent(`/seller/${slug}`)}`);
                   return;
                 }
+                if (isSeller) return;
                 setRequestOpen(true);
               }}
-              title={!canBook && isSeller ? 'Vendors cannot book vendors' : undefined}
+              title={isSeller ? 'Vendors cannot book vendors' : undefined}
             >
               <CalendarDays className="h-4 w-4" />
               {isSeller ? 'Request quote' : 'Request quote'}
@@ -578,6 +590,10 @@ export default function SellerProfile() {
                   pickedDate={pickedDate}
                   onPick={(d) => {
                     setPickedDate(d);
+                    if (!user) {
+                      navigate(`/login?redirect=${encodeURIComponent(`/seller/${slug}`)}`);
+                      return;
+                    }
                     if (canBook) setRequestOpen(true);
                   }}
                 />
