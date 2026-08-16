@@ -1,0 +1,38 @@
+export const citySeeds = [
+  {
+  name: 'Sukkur',
+  displayName: 'Sukkur',
+  slug: 'sukkur',
+  province: 'Sindh',
+  areas: ['Sukkur City', 'Airport Road', 'Band Road', 'Rohri', 'Old Sukkur', 'Kot Mir Hadi'],
+  isActive: true,
+  sortOrder: 1,
+  },
+  {
+  name: 'Khairpur',
+  displayName: 'Khairpur',
+  slug: 'khairpur',
+  province: 'Sindh',
+  areas: ['Khairpur City', 'Faqeer Colony', 'Bardar', 'Kot Diji'],
+  isActive: true,
+  sortOrder: 2,
+  },
+  {
+  name: 'Shikarpur',
+  displayName: 'Shikarpur',
+  slug: 'shikarpur',
+  province: 'Sindh',
+  areas: ['Shikarpur City', 'Lakhi Dar', 'New Shikarpur'],
+  isActive: true,
+  sortOrder: 3,
+  },
+  {
+  name: 'Larkana',
+  displayName: 'Larkana',
+  slug: 'larkana',
+  province: 'Sindh',
+  areas: ['Larkana City', 'Mohenjo Daro Road', 'New Town'],
+  isActive: true,
+  sortOrder: 4,
+  },
+];

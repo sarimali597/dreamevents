@@ -1,0 +1,15 @@
+{
+  "name": "dreamevents",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DreamEvents — trust-first event services marketplace (V1: Sukkur)",
+  "scripts": {
+  "dev": "turbo dev",
+  "build": "turbo build",
+  "seed": "pnpm --filter dreamevents-backend seed"
+  },
+  "devDependencies": {
+  "turbo": "^2.10.10"
+  },
+  "packageManager": "pnpm@11.15.1"
+}
