@@ -12,13 +12,5 @@
   "devDependencies": {
     "turbo": "^2.10.10"
   },
-  "packageManager": "pnpm@11.15.1",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "rollup",
-      "@tailwindcss/oxide",
-      "@swc/core"
-    ]
-  }
+  "packageManager": "pnpm@11.15.1"
 }

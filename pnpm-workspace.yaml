@@ -2,7 +2,12 @@ packages:
   - frontend
   - backend
 
-onlyBuiltDependencies:
-  - esbuild
-  - sharp
-  - unrs-resolver
+# pnpm v11: onlyBuiltDependencies was replaced by allowBuilds.
+# Set build-script approvals here so CI/Vercel installs succeed.
+allowBuilds:
+  esbuild: true
+  rollup: true
+  "@tailwindcss/oxide": true
+  "@swc/core": true
+  sharp: true
+  unrs-resolver: true
