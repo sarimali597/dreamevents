@@ -1,0 +1,46 @@
+2026-08-17T00:46:49.648508566Z ==> Downloading cache...
+2026-08-17T00:46:49.67545506Z ==> It looks like we don't have access to your repo, but we'll try to clone it anyway.
+2026-08-17T00:46:49.675471103Z ==> Cloning from https://github.com/sarimali597/dreamevents
+2026-08-17T00:46:59.506853563Z ==> Checking out commit 3b204245993502770ee24fe8957a410326e0bd21 in branch main
+2026-08-17T00:47:00.817032855Z ==> Downloaded 33MB in 6s. Extraction took 0s.
+2026-08-17T00:47:01.211588416Z ==> Requesting Node.js version >=22
+2026-08-17T00:47:01.307162779Z ==> Using Node.js version 26.7.0 via /opt/render/project/src/backend/package.json
+2026-08-17T00:47:01.307170565Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+2026-08-17T00:47:01.307329751Z ==> Installing Node.js version 26.7.0...
+2026-08-17T00:47:02.452187172Z ==> Running build command 'npm install'...
+2026-08-17T00:47:03.651327762Z 
+2026-08-17T00:47:03.651346875Z up to date, audited 173 packages in 1s
+2026-08-17T00:47:03.651356787Z 
+2026-08-17T00:47:03.651432957Z 47 packages are looking for funding
+2026-08-17T00:47:03.6514993Z   run `npm fund` for details
+2026-08-17T00:47:03.652378884Z 
+2026-08-17T00:47:03.65238559Z found 0 vulnerabilities
+2026-08-17T00:47:04.192247822Z ==> Uploading build...
+2026-08-17T00:47:06.797186605Z ==> Uploaded in 1.8s. Compression took 0.8s
+2026-08-17T00:47:06.798525377Z ==> Build successful 🎉
+2026-08-17T00:47:08.620458459Z ==> Deploying...
+2026-08-17T00:47:08.83663109Z ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+2026-08-17T00:47:15.952056853Z ==> Running 'node server.js'
+2026-08-17T00:47:21.84819974Z [db] Using custom DNS servers: 192.168.100.1
+2026-08-17T00:48:08.991223532Z MongoDB connection error (attempt 1/5): querySrv ETIMEOUT _mongodb._tcp.cluster0.wlugfsf.mongodb.net
+2026-08-17T00:48:08.991277596Z [db] Retrying in 2s...
+2026-08-17T00:48:13.61414065Z ==> No open ports detected, continuing to scan...
+2026-08-17T00:48:13.965309138Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2026-08-17T00:49:01.035081711Z MongoDB connection error (attempt 2/5): querySrv ETIMEOUT _mongodb._tcp.cluster0.wlugfsf.mongodb.net
+2026-08-17T00:49:01.035135975Z [db] Retrying in 4s...
+2026-08-17T00:49:17.074087336Z ==> No open ports detected, continuing to scan...
+2026-08-17T00:49:17.480207265Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2026-08-17T00:49:55.095199557Z MongoDB connection error (attempt 3/5): querySrv ETIMEOUT _mongodb._tcp.cluster0.wlugfsf.mongodb.net
+2026-08-17T00:49:55.095256181Z [db] Retrying in 8s...
+2026-08-17T00:50:20.502134272Z ==> No open ports detected, continuing to scan...
+2026-08-17T00:50:20.863000153Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2026-08-17T00:50:51.136739361Z MongoDB connection error (attempt 4/5): querySrv ETIMEOUT _mongodb._tcp.cluster0.wlugfsf.mongodb.net
+2026-08-17T00:50:51.136834787Z [db] Retrying in 16s...
+2026-08-17T00:51:23.515805289Z ==> No open ports detected, continuing to scan...
+2026-08-17T00:51:23.886413218Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2026-08-17T00:51:57.196107925Z MongoDB connection error (attempt 5/5): querySrv ETIMEOUT _mongodb._tcp.cluster0.wlugfsf.mongodb.net
+2026-08-17T00:51:57.196259776Z [db] Giving up after maximum retries.
+2026-08-17T00:51:58.608142692Z ==> Exited with status 1
+2026-08-17T00:51:58.610637814Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2026-08-17T00:52:01.970491372Z ==> Running 'node server.js'
+2026-08-17T00:52:08.271109905Z [db] Using custom DNS servers: 192.168.100.1

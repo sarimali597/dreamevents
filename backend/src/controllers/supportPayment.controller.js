@@ -8,8 +8,6 @@ export const listMySupportPayments = asyncHandler(async (req, res) => {
     .sort({ createdAt: -1 })
     .lean();
 
-  // Attach `reference` (a string alias for _id) so the success page can match
-  // the ?reference= query param without relying on Mongoose virtuals in lean docs.
   const decorated = payments.map((p) => ({ ...p, reference: p._id?.toString() }));
 
   res.json(new ApiResponse('Support payments fetched', decorated));

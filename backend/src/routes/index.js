@@ -17,6 +17,7 @@ import { reviewRouter, favoriteRouter, feedPostRouter } from './review.routes.js
 import supportPaymentRoutes from './supportPayment.routes.js';
 import adminRoutes from './admin.routes.js';
 import uploadRoutes from './upload.routes.js';
+import seedRoutes from './seed.routes.js';
 
 const router = Router();
 
@@ -53,5 +54,6 @@ router.use('/feed', feedPostRouter);
 router.use('/support', supportPaymentRoutes);
 router.use('/admin', adminRoutes);
 router.use('/upload', uploadRoutes);
+router.use('/seed', seedRoutes);
 
 export default router;

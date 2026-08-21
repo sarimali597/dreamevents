@@ -1,0 +1,50 @@
+2026-08-17T05:46:56.455556471Z ==> Downloading cache...
+2026-08-17T05:46:56.486464175Z ==> It looks like we don't have access to your repo, but we'll try to clone it anyway.
+2026-08-17T05:46:56.486470598Z ==> Cloning from https://github.com/sarimali597/dreamevents
+2026-08-17T05:46:57.86366827Z ==> Checking out commit 478359ac17db9b0bb6deec0c04d98277e08600ee in branch main
+2026-08-17T05:46:59.226105137Z ==> Downloaded 33MB in 1s. Extraction took 1s.
+2026-08-17T05:46:59.866240651Z ==> Requesting Node.js version >=22
+2026-08-17T05:47:00.03162997Z ==> Using Node.js version 26.7.0 via /opt/render/project/src/backend/package.json
+2026-08-17T05:47:00.031642174Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+2026-08-17T05:47:00.031733041Z ==> Installing Node.js version 26.7.0...
+2026-08-17T05:47:01.202291622Z ==> Running build command 'npm install'...
+2026-08-17T05:47:01.879989086Z 
+2026-08-17T05:47:01.880006577Z up to date, audited 173 packages in 612ms
+2026-08-17T05:47:01.880011825Z 
+2026-08-17T05:47:01.880087763Z 47 packages are looking for funding
+2026-08-17T05:47:01.880137771Z   run `npm fund` for details
+2026-08-17T05:47:01.881026588Z 
+2026-08-17T05:47:01.881031005Z found 0 vulnerabilities
+2026-08-17T05:47:04.976403856Z ==> Uploading build...
+2026-08-17T05:47:07.725818446Z ==> Uploaded in 1.8s. Compression took 0.9s
+2026-08-17T05:47:07.727214926Z ==> Build successful 🎉
+2026-08-17T05:47:09.576265648Z ==> Deploying...
+2026-08-17T05:47:09.778994584Z ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+2026-08-17T05:47:17.290851493Z ==> Running 'node server.js'
+2026-08-17T05:47:23.891421065Z [db] Ignoring 1 private DNS server(s) from DNS_SERVERS (cannot resolve public hosts).
+2026-08-17T05:47:25.17687531Z MongoDB Connected: ac-fttbwdr-shard-00-02.wlugfsf.mongodb.net
+2026-08-17T05:47:25.607230296Z [scheduler] Started (10-min maintenance jobs, hourly booking auto-complete)
+2026-08-17T05:47:25.609469463Z [api] DreamEvents backend listening on http://localhost:4000
+2026-08-17T05:47:25.609480403Z [api] Frontend origin: https://dreamevents-project.vercel.app
+2026-08-17T05:47:26.090194917Z HEAD / 404 23.264 ms - 65
+2026-08-17T05:47:29.619816704Z GET /api/v1/health 200 1.343 ms - 142
+2026-08-17T05:47:29.621629341Z GET /api/v1/health 200 0.415 ms - 142
+2026-08-17T05:47:30.552744929Z ==> Your service is live 🎉
+2026-08-17T05:47:30.677189656Z GET / 404 0.356 ms - 64
+2026-08-17T05:47:30.758744672Z ==> 
+2026-08-17T05:47:30.76138334Z ==> ///////////////////////////////////////////////////////////
+2026-08-17T05:47:30.763997578Z ==> 
+2026-08-17T05:47:30.766487243Z ==> Available at your primary URL https://dreamevents-rm6f.onrender.com
+2026-08-17T05:47:30.768907646Z ==> 
+2026-08-17T05:47:30.771293648Z ==> ///////////////////////////////////////////////////////////
+2026-08-17T05:47:34.621493282Z GET /api/v1/health 200 0.431 ms - 142
+2026-08-17T05:47:39.618309379Z GET /api/v1/health 200 0.391 ms - 142
+2026-08-17T05:47:39.6217601Z GET /api/v1/health 200 0.230 ms - 142
+2026-08-17T05:47:44.622008392Z GET /api/v1/health 200 0.298 ms - 142
+2026-08-17T05:47:49.622160758Z GET /api/v1/health 200 0.348 ms - 142
+2026-08-17T05:47:54.622461833Z GET /api/v1/health 200 0.384 ms - 142
+2026-08-17T05:47:59.621432107Z GET /api/v1/health 200 0.364 ms - 142
+2026-08-17T05:48:04.621576843Z GET /api/v1/health 200 0.352 ms - 141
+2026-08-17T05:48:09.618096072Z GET /api/v1/health 200 0.398 ms - 142
+2026-08-17T05:48:09.62090708Z GET /api/v1/health 200 0.163 ms - 142
+2026-08-17T05:48:14.622016874Z GET /api/v1/health 200 0.261 ms - 142
