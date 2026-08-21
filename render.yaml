@@ -16,7 +16,7 @@ services:
       - key: FRONTEND_URL
         value: https://dream-events.vercel.app
       - key: FRONTEND_URLS
-        value: https://dream-events.vercel.app
+        value: https://dream-events.vercel.app,https://dreamevents-project.vercel.app
       - key: MONGODB_URI
         sync: false
       - key: JWT_SECRET
