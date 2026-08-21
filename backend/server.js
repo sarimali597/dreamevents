@@ -1,5 +1,6 @@
 import { httpServer } from './src/app.js';
-import { connectDB, runSeedIfNeeded } from './src/config/database.js';
+import { connectDB } from './src/config/database.js';
+import { runSeedIfNeeded } from './src/config/seed.js';
 import { env } from './src/config/env.js';
 import { startScheduler } from './src/utils/scheduler.js';
 
