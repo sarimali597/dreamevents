@@ -1,15 +1,16 @@
 import { httpServer } from './src/app.js';
-import { connectDB } from './src/config/database.js';
+import { connectDB, runSeedIfNeeded } from './src/config/database.js';
 import { env } from './src/config/env.js';
 import { startScheduler } from './src/utils/scheduler.js';
 
 const bootstrap = async () => {
   await connectDB();
+  await runSeedIfNeeded();
   startScheduler();
 
   httpServer.listen(env.PORT, () => {
-  console.log(`[api] DreamEvents backend listening on http://localhost:${env.PORT}`);
-  console.log(`[api] Frontend origin: ${env.FRONTEND_URL}`);
+    console.log(`[api] DreamEvents backend listening on http://localhost:${env.PORT}`);
+    console.log(`[api] Frontend origin: ${env.FRONTEND_URL}`);
   });
 };
 
