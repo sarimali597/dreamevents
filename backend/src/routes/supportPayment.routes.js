@@ -1,15 +1,10 @@
 import { Router } from 'express';
 import { authMiddleware } from '../middleware/auth.middleware.js';
-import {
-  createCoffeeSession,
-  handleSafepayWebhook,
-  listMySupportPayments,
-} from '../controllers/supportPayment.controller.js';
+import { listMySupportPayments } from '../controllers/supportPayment.controller.js';
 
 const router = Router();
 
-router.post('/checkout', createCoffeeSession);
-router.post('/webhook', handleSafepayWebhook);
+// Support payments — list only (no payment processing; IBAN is shown on the frontend)
 router.get('/mine', authMiddleware, listMySupportPayments);
 
 export default router;

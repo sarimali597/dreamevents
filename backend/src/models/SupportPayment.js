@@ -11,11 +11,18 @@ const SupportPaymentSchema = new Schema(
   default: 'pending',
   index: true,
   },
+  coffeeName: { type: String, trim: true, maxlength: 120 },
   safepayOrderId: { type: String, trim: true, index: true },
   message: { type: String, trim: true, maxlength: 500 },
   metadata: { type: Schema.Types.Mixed },
   },
   { timestamps: true }
 );
+
+// Expose the document _id as `reference` so the success page can look it up
+// from the ?reference= query param without leaking internal field names.
+SupportPaymentSchema.virtual('reference').get(function () {
+  return this._id.toString();
+});
 
 export const SupportPayment = mongoose.model('SupportPayment', SupportPaymentSchema);
