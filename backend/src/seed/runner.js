@@ -1,4 +1,3 @@
-import { Router } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -243,6 +242,8 @@ const SELLERS = [
 ];
 
 export async function runSeed() {
+  await connectDB();
+
   // Categories
   for (const cat of CATEGORIES) {
     const existing = await Category.findOne({ slug: cat.slug });
@@ -257,53 +258,62 @@ export async function runSeed() {
     await City.create(city);
   }
 
-  // Sellers
+  // Sellers — each in its own try/catch so one bad record doesn't kill the batch
+  let created = 0;
   for (const s of SELLERS) {
-    const slug = s.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    const existing = await SellerProfile.findOne({ slug });
-    if (existing) continue;
+    try {
+      const slug = s.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const existing = await SellerProfile.findOne({ slug });
+      if (existing) continue;
 
-    const email = `seller-${slug}@dreamevents.local`;
-    let user = await User.findOne({ email });
-    if (!user) {
-      user = await User.create({
-        email,
-        password: await bcrypt.hash('Seller@123456', 12),
-        name: s.businessName,
-        role: 'seller',
-        city: 'Sukkur',
-        notificationPreferences: { email: true, inApp: true },
+      const email = `seller-${slug}@dreamevents.local`;
+      let user = await User.findOne({ email });
+      if (!user) {
+        user = await User.create({
+          email,
+          password: await bcrypt.hash('Seller@123456', 12),
+          name: s.businessName,
+          role: 'seller',
+          city: 'Sukkur',
+          notificationPreferences: { email: true, inApp: true },
+        });
+      }
+
+      await SellerProfile.create({
+        ...s,
+        userId: user._id,
+        slug,
       });
-    }
 
-    await SellerProfile.create({
-      ...s,
-      userId: user._id,
-      slug,
-    });
+      const profile = await SellerProfile.findOne({ slug });
+      if (profile) {
+        const services = [
+          { name: 'Standard Package', price: s.startingPrice, inclusions: ['Professional service', 'Quality materials'] },
+          { name: 'Premium Package', price: s.startingPrice + 20000, inclusions: ['Premium service', 'Quality materials', 'Extended coverage'] },
+        ];
+        for (const svc of services) {
+          await Service.create({
+            sellerId: profile._id,
+            name: svc.name,
+            price: svc.price,
+            priceType: 'fixed',
+            inclusions: svc.inclusions,
+            category: s.category,
+            isActive: true,
+            sortOrder: 1,
+          });
+        }
+      }
 
-    const profile = await SellerProfile.findOne({ slug });
-    const services = [
-      { name: 'Standard Package', price: s.startingPrice, inclusions: ['Professional service', 'Quality materials'] },
-      { name: 'Premium Package', price: s.startingPrice + 20000, inclusions: ['Premium service', 'Quality materials', 'Extended coverage'] },
-    ];
-    for (const svc of services) {
-      await Service.create({
-        sellerId: profile._id,
-        name: svc.name,
-        price: svc.price,
-        priceType: 'fixed',
-        inclusions: svc.inclusions,
-        category: s.category,
-        isActive: true,
-        sortOrder: 1,
-      });
+      created += 1;
+    } catch (err) {
+      console.error(`[seed] Skipping seller "${s.businessName}": ${err.message}`);
     }
   }
 
   return {
     categories: CATEGORIES.length,
     cities: CITIES.length,
-    sellers: SELLERS.length,
+    sellers: created,
   };
 }
