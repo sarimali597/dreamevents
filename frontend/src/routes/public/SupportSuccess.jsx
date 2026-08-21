@@ -25,7 +25,7 @@ export default function SupportSuccess() {
                 Account: <span className="font-mono font-medium">5590490271961631</span>
               </p>
               <p className="mt-0.5 text-body-sm text-text-secondary">
-                Bank: <span className="font-medium">Bank Alfalah</span>
+                Bank: <span className="font-medium">Saada Pay</span>
               </p>
               <p className="mt-0.5 text-body-sm text-text-secondary">
                 Reference: <span className="font-medium">DreamEvents Coffee</span>

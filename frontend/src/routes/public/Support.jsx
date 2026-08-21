@@ -5,7 +5,7 @@ import { Button } from '../../components/ui/Button.jsx';
 import { cn } from '../../lib/utils.js';
 
 const IBAN = '5590490271961631';
-const BANK = 'Bank Alfalah';
+const BANK = 'Saada Pay';
 const ACCOUNT_HOLDER = 'DreamEvents';
 const BRANCH_CODE = '0306';
 
@@ -25,7 +25,6 @@ export default function Support() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback: select the hidden input
       if (inputRef.current) {
         inputRef.current.select();
         document.execCommand('copy');
@@ -36,7 +35,6 @@ export default function Support() {
   };
 
   const formatIBAN = (iban) => {
-    // Show in readable groups: 5590 4902 7196 1631
     const groups = [];
     for (let i = 0; i < iban.length; i += 4) {
       groups.push(iban.slice(i, i + 4));
@@ -73,7 +71,7 @@ export default function Support() {
             </div>
           </div>
 
-          {/* Card body - IBAN display */}
+          {/* Card body */}
           <div className="p-6">
             <div className="mb-5 flex items-center justify-between">
               <div>
@@ -126,7 +124,7 @@ export default function Support() {
               </div>
             </div>
 
-            {/* Formatted IBAN for readability */}
+            {/* Formatted IBAN */}
             <div className="rounded-xl bg-ink-50 px-4 py-3 dark:bg-ink-800/50 dark:border dark:border-ink-700">
               <p className="text-micro text-text-tertiary">Formatted</p>
               <p className="font-geist-mono text-body font-medium text-text-primary">
@@ -149,9 +147,9 @@ export default function Support() {
                     How to send support
                   </p>
                   <p className="mt-1 text-body-sm text-text-secondary">
-                    Use any mobile banking app, bank transfer, or visit a branch. Send
-                    PKR to the account above and mention "DreamEvents Coffee" in the
-                    reference/memo field so we know it's from you.
+                    Use Saada Pay app or any mobile banking service. Send PKR to the
+                    account above and write "DreamEvents Coffee" in the reference/memo
+                    field so we know it's from you.
                   </p>
                 </div>
               </div>

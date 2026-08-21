@@ -1,38 +1,23 @@
-export const citySeeds = [
-  {
-  name: 'Sukkur',
-  displayName: 'Sukkur',
-  slug: 'sukkur',
-  province: 'Sindh',
-  areas: ['Sukkur City', 'Airport Road', 'Band Road', 'Rohri', 'Old Sukkur', 'Kot Mir Hadi'],
-  isActive: true,
-  sortOrder: 1,
-  },
-  {
-  name: 'Khairpur',
-  displayName: 'Khairpur',
-  slug: 'khairpur',
-  province: 'Sindh',
-  areas: ['Khairpur City', 'Faqeer Colony', 'Bardar', 'Kot Diji'],
-  isActive: true,
-  sortOrder: 2,
-  },
-  {
-  name: 'Shikarpur',
-  displayName: 'Shikarpur',
-  slug: 'shikarpur',
-  province: 'Sindh',
-  areas: ['Shikarpur City', 'Lakhi Dar', 'New Shikarpur'],
-  isActive: true,
-  sortOrder: 3,
-  },
-  {
-  name: 'Larkana',
-  displayName: 'Larkana',
-  slug: 'larkana',
-  province: 'Sindh',
-  areas: ['Larkana City', 'Mohenjo Daro Road', 'New Town'],
-  isActive: true,
-  sortOrder: 4,
-  },
-];
+import { citySeeds } from './cities.js';
+import { City } from '../models/City.js';
+
+export const seedCities = async () => {
+  let created = 0;
+  let skipped = 0;
+
+  for (const city of citySeeds) {
+    const existing = await City.findOne({ slug: city.slug });
+    if (existing) {
+      console.log(`[seed] City "${city.slug}" already exists, skipping`);
+      skipped++;
+      continue;
+    }
+
+    await City.create(city);
+    console.log(`[seed] Created city: ${city.name}`);
+    created++;
+  }
+
+  console.log(`[seed] Cities: ${created} created, ${skipped} skipped`);
+  return { created, skipped };
+};

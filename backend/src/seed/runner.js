@@ -1,3 +1,4 @@
+import { Router } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -241,30 +242,26 @@ const SELLERS = [
   },
 ];
 
-async function main() {
-  await connectDB();
-
+export async function runSeed() {
   // Categories
   for (const cat of CATEGORIES) {
     const existing = await Category.findOne({ slug: cat.slug });
-    if (existing) { console.log(`[seed] Category "${cat.slug}" exists, skip`); continue; }
+    if (existing) continue;
     await Category.create(cat);
-    console.log(`[seed] Created category: ${cat.name}`);
   }
 
   // Cities
   for (const city of CITIES) {
     const existing = await City.findOne({ slug: city.slug });
-    if (existing) { console.log(`[seed] City "${city.slug}" exists, skip`); continue; }
+    if (existing) continue;
     await City.create(city);
-    console.log(`[seed] Created city: ${city.name}`);
   }
 
   // Sellers
   for (const s of SELLERS) {
     const slug = s.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const existing = await SellerProfile.findOne({ slug });
-    if (existing) { console.log(`[seed] Seller "${s.businessName}" exists, skip`); continue; }
+    if (existing) continue;
 
     const email = `seller-${slug}@dreamevents.local`;
     let user = await User.findOne({ email });
@@ -277,7 +274,6 @@ async function main() {
         city: 'Sukkur',
         notificationPreferences: { email: true, inApp: true },
       });
-      console.log(`[seed] Created user for ${s.businessName}`);
     }
 
     await SellerProfile.create({
@@ -285,18 +281,15 @@ async function main() {
       userId: user._id,
       slug,
     });
-    console.log(`[seed] Created seller: ${s.businessName}`);
 
-    // Create services
+    const profile = await SellerProfile.findOne({ slug });
     const services = [
       { name: 'Standard Package', price: s.startingPrice, inclusions: ['Professional service', 'Quality materials'] },
       { name: 'Premium Package', price: s.startingPrice + 20000, inclusions: ['Premium service', 'Quality materials', 'Extended coverage'] },
-      { name: 'VIP Package', price: s.startingPrice + 50000, inclusions: ['VIP service', 'Premium materials', 'Full coverage', 'Dedicated coordinator'] },
     ];
     for (const svc of services) {
-      if (svc.price > s.startingPrice * 3) continue;
       await Service.create({
-        sellerId: (await SellerProfile.findOne({ slug }))._id,
+        sellerId: profile._id,
         name: svc.name,
         price: svc.price,
         priceType: 'fixed',
@@ -308,11 +301,9 @@ async function main() {
     }
   }
 
-  console.log('[seed] Done!');
-  await mongoose.disconnect();
+  return {
+    categories: CATEGORIES.length,
+    cities: CITIES.length,
+    sellers: SELLERS.length,
+  };
 }
-
-main().catch((err) => {
-  console.error('[seed] Error:', err);
-  process.exit(1);
-});
